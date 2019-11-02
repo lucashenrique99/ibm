@@ -1,0 +1,30 @@
+<app-form-view title="Novo Usuário" (onSave)="onSave()" [disableButton]="isInvalidForm()" [form]="form">
+    <mat-card form>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Email" [formControl]="getField('email')">
+                <mat-error *ngIf="getField('email').invalid && !hasError('email','exists')">Email inválido
+                </mat-error>
+                <mat-error *ngIf="getField('email').invalid && hasError('email','exists')">Email já existente
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Nome" [formControl]="getField('name')">
+                <mat-error *ngIf="getField('name').invalid">Nome é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div *ngIf="getField('password') && getField('password').enabled" class="form-container">
+            <mat-form-field>
+                <input type="password" matInput placeholder="Senha" [formControl]="getField('password')">
+                <mat-error *ngIf="hasError('password','required')">Senha é obrigatória
+                </mat-error>
+                <mat-error *ngIf="hasError('password','minlength')">Insira com no mínimo 4 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </mat-card>
+</app-form-view>

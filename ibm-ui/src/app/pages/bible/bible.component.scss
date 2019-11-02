@@ -1,0 +1,9 @@
+@import 'src/assets/scss/colors.scss';
+
+.panel-header{
+    color: $fifth-color;
+
+    &:hover{
+        cursor: pointer;
+    }
+}

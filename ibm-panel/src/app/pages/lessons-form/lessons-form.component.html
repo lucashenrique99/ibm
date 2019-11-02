@@ -1,0 +1,32 @@
+<app-form-view title="Nova Lição" (onSave)="onSave()" [disableButton]="isInvalidForm()" [form]="form">
+    <mat-card form>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Título" [formControl]="getField('title')">
+                <mat-error *ngIf="hasError('title','required')">Título é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Subtítulo" [formControl]="getField('subtitle')">
+                <mat-error *ngIf="hasError('subtitle','required')">Subtítulo é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput [matDatepicker]="date" placeholder="Data" [formControl]="getField('date')" />
+                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+                
+                <mat-error *ngIf="hasError('date','required')">Data é obrigatória
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <app-quill [content]="content" (onTextChange)="onQuillContentChange($event)"></app-quill>
+        </div>
+
+    </mat-card>
+</app-form-view>

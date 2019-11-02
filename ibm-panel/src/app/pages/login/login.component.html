@@ -1,0 +1,29 @@
+<mat-grid-list cols="1" rowHeight="450px">
+    <mat-grid-tile>
+        <mat-card class="login-card">
+
+            <mat-card-title>
+                Login
+            </mat-card-title>
+
+            <mat-card-content>
+                <div class="form-container">
+                    <mat-form-field>
+                        <input matInput placeholder="Email" [(ngModel)]="email">
+                    </mat-form-field>
+                </div>
+                <div class="form-container">
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="Senha" [(ngModel)]="password">
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button (click)="onLogin()" mat-raised-button color="primary">Entrar</button>
+            </mat-card-actions>
+
+        </mat-card>
+
+    </mat-grid-tile>
+</mat-grid-list>

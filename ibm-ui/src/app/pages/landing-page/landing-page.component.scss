@@ -1,0 +1,8 @@
+@import 'src/assets/scss/colors.scss';
+
+section{
+    &:nth-child(odd){
+        background-color: $third-color;
+        color: $first-color;
+    }
+}

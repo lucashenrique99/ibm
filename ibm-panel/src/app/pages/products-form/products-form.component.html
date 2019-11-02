@@ -1,0 +1,26 @@
+<app-form-view title="Novo Produto" (onSave)="onSave()" [disableButton]="isInvalidForm()" [form]="form">
+    <mat-card form>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Nome" [formControl]="getField('name')">
+                <mat-error *ngIf="getField('name').invalid">Nome é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Descrição" [formControl]="getField('description')">
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input #price matInput placeholder="Preço" class="price-input" [formControl]="getField('price')" (focusin)="convertPriceToNumber()" (focusout)="formatPrice()">
+                <mat-error *ngIf="hasError('price', 'required')">Preço é obrigatório
+                </mat-error>
+                <mat-error *ngIf="hasError('price', 'min')">Preço deve ser maior do que 0
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+    </mat-card>
+</app-form-view>

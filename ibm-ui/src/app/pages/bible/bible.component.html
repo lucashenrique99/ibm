@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="col-12 col-lg-10 offset-lg-1 pt-3 pb-3 text-justify">
+
+        <app-page-title title="Bíblia"></app-page-title>
+
+        <div class="container-fluid">
+            <ngb-accordion #acc="ngbAccordion">
+                <ng-template ngFor let-book [ngForOf]="books">
+                    <ngb-panel [id]="book.abbrev">
+                        <ng-template ngbPanelHeader>
+                            <div class="d-flex align-items-center justify-content-between panel-header"
+                                (click)="acc.toggle(book.abbrev)">
+                                <label>{{book.name}}</label>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div class="d-flex flex-wrap align-items-center">
+                                <button *ngFor="let cap of book.chapters; let i = index" type="button"
+                                    class="btn btn-outline-primary m-2">
+                                    {{  (i+1) }}
+                                </button>
+                            </div>
+
+                            <div class="mt-2">
+                                <ul class="list-group list-group-flush">
+                                    <li *ngFor="let cap of book.chapters; let i=index" class="list-group-item">
+                                        <h4>Capítulo {{ i+1 }}</h4>
+                                        <div class="p-2">
+                                            <span *ngFor="let verse of cap; let j=index" class="mt-1 d-inline-block">
+                                                {{j + 1}}) {{verse}}
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                </ng-template>
+            </ngb-accordion>
+        </div>
+    </div>
+</div>

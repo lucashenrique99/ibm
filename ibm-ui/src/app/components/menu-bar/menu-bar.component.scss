@@ -1,0 +1,23 @@
+@import 'src/assets/scss/fonts.scss';
+@import 'src/assets/scss/colors.scss';
+
+.logo{
+    font-family: $font-logo;
+}
+
+.navbar-brand{
+    margin-right: 40px;
+}
+
+.bg-navbar{
+    background-color: $tenth-color;
+    min-height: 15vh;
+}
+
+.nav-link{
+    color: $first-color !important;
+
+    &:hover{
+        color: $second-color !important;
+    }
+}

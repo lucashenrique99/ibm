@@ -1,0 +1,18 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.form-container > * {
+    width: 100%;
+}
+
+.login-card{
+    padding: 4em !important;
+    width: 50% !important;
+}
+
+body{
+    background-color: #212121;
+    background-size: cover;
+}

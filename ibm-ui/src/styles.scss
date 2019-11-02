@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'assets/scss/fonts.scss';
+@import 'assets/scss/colors.scss';
+
+body{
+    font-family: $font-family;
+    background-color: $first-color;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: $first-color !important; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: $tenth-color !important; 
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $tenth-color !important; 
+}

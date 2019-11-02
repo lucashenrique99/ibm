@@ -1,0 +1,16 @@
+<mat-card class="list-view-card">
+    <div class="grid-container">
+        <mat-card-title>
+            {{title}}
+        </mat-card-title>
+
+        <mat-card-content>
+            <ng-content select="[table]"> </ng-content>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button class="ml-3" mat-raised-button color="primary"
+                [routerLink]="routerLinkButton">{{buttonLabel}}</button>
+        </mat-card-actions>
+    </div>
+</mat-card>

@@ -1,0 +1,13 @@
+@import 'src/assets/scss/fonts.scss';
+@import 'src/assets/scss/colors.scss';
+
+
+footer{
+    bottom: 0;
+    background-color: $tenth-color;
+    color: $first-color;
+}
+
+.logo{
+    font-family: $font-logo;
+}
