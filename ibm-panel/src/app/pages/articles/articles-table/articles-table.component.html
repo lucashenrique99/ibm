@@ -15,21 +15,21 @@
     <ng-container matColumnDef="moreOptions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td class="toolbar-column" mat-cell *matCellDef="let row">
-        <app-table-button-bar [itemId]="row.id" [message]="getMessage(row.id)" (OnDeleteConfirm)="onDelete($event)">
+        <app-table-button-bar [itemId]="row.id" [message]="getMessage(row.id)" (OnDeleteConfirm)="onDelete(row.id)">
         </app-table-button-bar>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+<!-- 
     <ng-container matColumnDef="noRecord">
       <td colspan="4" mat-footer-cell *matFooterCellDef>Nenhum artigo foi encontrado.</td>
     </ng-container>
 
     <ng-template [ngIf]="dataSource.data.length === 0">
       <tr mat-footer-row *matFooterRowDef="['noRecord']"></tr>
-    </ng-template>
+    </ng-template> -->
 
   </table>
 

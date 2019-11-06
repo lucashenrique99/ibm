@@ -20,7 +20,7 @@ export class MenuService {
     this.menuLinks = [
       { label: 'Início', routerLink: '/', visible: true },
       { label: 'A Igreja', routerLink: '/a-igreja', visible: true },
-      { label: 'Artigos', routerLink: '/', visible: true },
+      { label: 'Artigos', routerLink: '/artigos', visible: true },
       { label: 'Videos Cristãos', routerLink: '/videos-cristaos', visible: true },
       { label: 'Lições semanais', routerLink: '/', visible: true },
       { label: 'Nossa Loja', routerLink: '/', visible: true },

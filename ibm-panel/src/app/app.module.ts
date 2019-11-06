@@ -51,6 +51,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { CampaignsFormComponent } from './pages/campaigns-form/campaigns-form.component';
+import { CampaignsTableComponent } from './pages/campaigns/campaigns-table/campaigns-table.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -76,6 +79,9 @@ registerLocaleData(localePt);
     ArticlesFormComponent,
     QuillComponent,
     LessonsFormComponent,
+    CampaignsComponent,
+    CampaignsFormComponent,
+    CampaignsTableComponent,
   ],
   imports: [
     BrowserModule,

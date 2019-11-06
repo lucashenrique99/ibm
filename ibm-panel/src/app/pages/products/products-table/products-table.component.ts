@@ -34,12 +34,11 @@ export class ProductsTableComponent implements AfterViewInit, OnInit {
 
   
   onDelete(id){
-    this.products.delete(id).subscribe();
+    this.products.delete(id).subscribe( () => this.dataSource.findAll());
   }
 
   getMessage(id: number): string{
-    const product = "Camisa Cristã Preta";
-    return `Deseja realmente excluir o produto ${product}?`;
+    return `Deseja realmente excluir o produto ${this.dataSource.data.find(p => p.id == id).name}?`;
   }
 
 }

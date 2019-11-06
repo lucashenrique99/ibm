@@ -2,30 +2,29 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ArticlesTableDataSource, ArticlesTableItem } from './articles-table-datasource';
-import { CrudInterface } from 'src/app/services/interface/crud-interface';
-import { Article, ArticleService as ArticlesService } from 'src/app/services/articles/article.service';
+import { CampaignsTableDataSource, CampaignsTableItem } from './campaigns-table-datasource';
+import { CampaignsService } from 'src/app/services/campaigns/campaigns.service';
 
 @Component({
-  selector: 'app-articles-table',
-  templateUrl: './articles-table.component.html',
-  styleUrls: ['./articles-table.component.scss']
+  selector: 'app-campaigns-table',
+  templateUrl: './campaigns-table.component.html',
+  styleUrls: ['./campaigns-table.component.scss']
 })
-export class ArticlesTableComponent implements AfterViewInit, OnInit {
+export class CampaignsTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<ArticlesTableItem>;
-  dataSource: ArticlesTableDataSource;
+  @ViewChild(MatTable, {static: false}) table: MatTable<CampaignsTableItem>;
+  dataSource: CampaignsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'title', 'moreOptions'];
 
   constructor(
-    private articles: ArticlesService
+    private campaigns: CampaignsService
   ){}
 
   ngOnInit() {
-    this.dataSource = new ArticlesTableDataSource(this.articles);
+    this.dataSource = new CampaignsTableDataSource(this.campaigns);
   }
 
   ngAfterViewInit() {
@@ -35,7 +34,7 @@ export class ArticlesTableComponent implements AfterViewInit, OnInit {
   }
 
   onDelete(id: number){
-    this.articles.delete(id).subscribe( () => this.dataSource.findAll());
+    this.campaigns.delete(id).subscribe( () => this.dataSource.findAll());
 
   }
 

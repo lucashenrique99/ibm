@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, EventEmitter, Input, OnChanges, AfterViewInit } from '@angular/core';
 declare var require: any;
 
 @Component({
@@ -6,7 +6,7 @@ declare var require: any;
   templateUrl: './quill.component.html',
   styleUrls: ['./quill.component.scss']
 })
-export class QuillComponent implements OnInit {
+export class QuillComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild('quill', { static: true })
   quill: ElementRef;
@@ -51,10 +51,20 @@ export class QuillComponent implements OnInit {
     });
 
     this.editor.on('text-change', (delta, oldContents, source) => {
-      this.onTextChangeEventEmitter.emit(this.editor.getContents());
+      if (source == 'user') {
+        this.onTextChangeEventEmitter.emit(this.editor.getContents());
+      }
     })
+  }
 
-    if(this.content){
+  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
+    if (this.content && this.editor) {
+      this.editor.setContents(this.content, 'api');
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.content) {
       this.editor.setContents(this.content, 'api');
     }
   }

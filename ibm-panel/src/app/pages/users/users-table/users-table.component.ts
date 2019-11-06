@@ -11,10 +11,10 @@ import { UsersService } from 'src/app/services/users/users.service';
   styleUrls: ['./users-table.component.scss']
 })
 export class UsersTableComponent implements AfterViewInit, OnInit {
-  
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatTable, {static: false}) table: MatTable<UsersTableItem>;
+
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatTable, { static: false }) table: MatTable<UsersTableItem>;
   dataSource: UsersTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -22,7 +22,7 @@ export class UsersTableComponent implements AfterViewInit, OnInit {
 
   constructor(
     private users: UsersService
-  ){}
+  ) { }
 
   ngOnInit() {
     this.dataSource = new UsersTableDataSource(this.users);
@@ -34,12 +34,11 @@ export class UsersTableComponent implements AfterViewInit, OnInit {
     this.table.dataSource = this.dataSource;
   }
 
-  onDelete(id){
-    this.users.delete(id).subscribe();
+  onDelete(id) {
+    this.users.delete(id).subscribe(() => this.dataSource.findAll());
   }
 
-  getMessage(id: number): string{
-    const user = "Lucas";
-    return `Deseja realmente excluir o usuário ${user}?`;
+  getMessage(id: number): string {
+    return `Deseja realmente excluir o usuário ${this.dataSource.data.find(u => u.id == id).name}?`;
   }
 }

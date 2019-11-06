@@ -23,13 +23,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <ng-container matColumnDef="noRecord">
-        <td colspan="3" mat-footer-cell *matFooterCellDef>Nenhum usuário foi encontrado.</td>
-      </ng-container>
-  
-      <ng-template [ngIf]="dataSource.data.length === 0">
-        <tr mat-footer-row *matFooterRowDef="['noRecord']"></tr>
-      </ng-template>
+    <!-- <ng-container matColumnDef="noRecord">
+      <td colspan="3" mat-footer-cell *matFooterCellDef>Nenhum usuário foi encontrado.</td>
+    </ng-container>
+
+    <ng-template [ngIf]="dataSource.data.length === 0">
+      <tr mat-footer-row *matFooterRowDef="['noRecord']"></tr>
+    </ng-template> -->
   </table>
 
   <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="50"

@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { ProductsService, Product } from 'src/app/services/products/products.service';
 import { CrudInterface } from 'src/app/services/interface/crud-interface';
 
@@ -19,16 +19,23 @@ export interface ProductsTableItem {
  * (including sorting, pagination, and filtering).
  */
 export class ProductsTableDataSource extends DataSource<ProductsTableItem> {
+
   data: ProductsTableItem[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 
+  products$: BehaviorSubject<ProductsTableItem[]>;
 
   constructor(
     private service: CrudInterface<Product, number>
   ) {
     super();
+    this.products$ = new BehaviorSubject([]);
 
+    this.findAll();
+  }
+
+  findAll(): void {
     this.service
       .findAll()
       .pipe(
@@ -37,6 +44,7 @@ export class ProductsTableDataSource extends DataSource<ProductsTableItem> {
       .subscribe(
         (array) => {
           this.data = array;
+          this.products$.next(this.data);
         }
       )
   }
@@ -49,15 +57,16 @@ export class ProductsTableDataSource extends DataSource<ProductsTableItem> {
   connect(): Observable<ProductsTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
+    // const dataMutations = [
+    //   observableOf(this.data),
+    //   this.paginator.page,
+    //   this.sort.sortChange
+    // ];
 
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+    // return merge(...dataMutations).pipe(map(() => {
+    //   return this.getPagedData(this.getSortedData([...this.data]));
+    // }));
+    return this.products$.asObservable();
   }
 
   /**

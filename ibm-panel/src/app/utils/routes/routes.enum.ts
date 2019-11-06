@@ -12,6 +12,10 @@ export enum AppRoutes {
     NEW_LESSON = "licoes/nova",
     EXISTENT_LESSON = "licoes/:id",
 
+    LIST_CAMPAIGNS = "campanhas",
+    NEW_CAMPAIGN = "campanhas/nova",
+    EXISTENT_CAMPAIGN = "campanhas/:id",
+
     LIST_ARTICLES = "artigos",
     NEW_ARTICLE = "artigos/novo",
     EXISTENT_ARTICLE = "artigos/:id",

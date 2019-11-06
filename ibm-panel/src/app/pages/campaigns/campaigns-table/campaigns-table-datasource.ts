@@ -4,31 +4,31 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { CrudInterface } from 'src/app/services/interface/crud-interface';
-import { Article } from 'src/app/services/articles/article.service';
+import { Campaign } from 'src/app/services/campaigns/campaigns.service';
 
 // TODO: Replace this with your own data model type
-export interface ArticlesTableItem {
+export interface CampaignsTableItem {
   title: string;
   id: number;
 }
 
 /**
- * Data source for the ArticlesTable view. This class should
+ * Data source for the CampaignsTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ArticlesTableDataSource extends DataSource<ArticlesTableItem> {
-  data: ArticlesTableItem[] = [];
+export class CampaignsTableDataSource extends DataSource<CampaignsTableItem> {
+  data: CampaignsTableItem[] = [];
   paginator: MatPaginator;
   sort: MatSort;
-  articles$: BehaviorSubject<ArticlesTableItem[]>;
 
+  campaigns$: BehaviorSubject<CampaignsTableItem[]>;
 
   constructor(
-    private service: CrudInterface<Article, number>
+    private service: CrudInterface<Campaign, number>
   ) {
     super();
-    this.articles$ = new BehaviorSubject([]);
+    this.campaigns$ = new BehaviorSubject([]);
     this.findAll();
   }
 
@@ -36,12 +36,12 @@ export class ArticlesTableDataSource extends DataSource<ArticlesTableItem> {
     this.service
       .findAll()
       .pipe(
-        map(articles => articles.map<Article>(a => ({ id: a.id, title: a.title })))
+        map(campaigns => campaigns.map<Campaign>(a => ({ id: a.id, title: a.title })))
       )
       .subscribe(
         (array) => {
           this.data = array;
-          this.articles$.next(this.data);
+          this.campaigns$.next(this.data);
         }
       )
   }
@@ -51,7 +51,7 @@ export class ArticlesTableDataSource extends DataSource<ArticlesTableItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<ArticlesTableItem[]> {
+  connect(): Observable<CampaignsTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     // const dataMutations = [
@@ -63,20 +63,20 @@ export class ArticlesTableDataSource extends DataSource<ArticlesTableItem> {
     // return merge(...dataMutations).pipe(map(() => {
     //   return this.getPagedData(this.getSortedData([...this.data]));
     // }));
-    return this.articles$.asObservable();
+    return this.campaigns$.asObservable();
   }
 
   /**
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() { }
+  disconnect() {}
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: ArticlesTableItem[]) {
+  private getPagedData(data: CampaignsTableItem[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -85,7 +85,7 @@ export class ArticlesTableDataSource extends DataSource<ArticlesTableItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: ArticlesTableItem[]) {
+  private getSortedData(data: CampaignsTableItem[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }

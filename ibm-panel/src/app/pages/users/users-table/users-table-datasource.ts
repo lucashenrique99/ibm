@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { UsersService, User } from 'src/app/services/users/users.service';
 import { CrudInterface } from 'src/app/services/interface/crud-interface';
 
@@ -24,19 +24,27 @@ export class UsersTableDataSource extends DataSource<UsersTableItem> {
   paginator: MatPaginator;
   sort: MatSort;
 
+  users$: BehaviorSubject<UsersTableItem[]>;
+
   constructor(
     private service: CrudInterface<User, number>
   ) {
     super();
 
-    this.service
-      .findAll()
+    this.users$ = new BehaviorSubject([]);
+    this.findAll();
+  }
+
+  findAll() {
+    this.service.findAll()
       .pipe(
-        map(users => users.map<UsersTableItem>(u => ({ id: u.id, name: u.name, email: u.email })))
-      )
+        map<User[], UsersTableItem[]>(users =>
+          users.map<UsersTableItem>(u => ({ id: u.id, name: u.name, email: u.email }))
+        ))
       .subscribe(
         (array) => {
           this.data = array;
+          this.users$.next(array);
         }
       )
   }
@@ -49,15 +57,17 @@ export class UsersTableDataSource extends DataSource<UsersTableItem> {
   connect(): Observable<UsersTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
+    // const dataMutations = [
+    //   observableOf(this.data),
+    //   this.users$.asObservable(),
+    //   this.paginator.page,
+    //   this.sort.sortChange,
+    // ];
 
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+    // return merge(...dataMutations).pipe(map(() => {
+    //   return this.getPagedData(this.getSortedData([...this.data]));
+    // }));
+    return this.users$.asObservable();
   }
 
   /**

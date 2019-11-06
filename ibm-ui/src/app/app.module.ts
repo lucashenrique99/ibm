@@ -13,6 +13,9 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ChristianVideosComponent } from './pages/christian-videos/christian-videos.component';
 import { PageTitleComponent } from './components/page-title/page-title.component';
 import { BibleComponent } from './pages/bible/bible.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,13 @@ import { BibleComponent } from './pages/bible/bible.component';
     AboutUsComponent,
     ChristianVideosComponent,
     PageTitleComponent,
-    BibleComponent
+    BibleComponent,
+    ArticlesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
 
     NgbModule
   ],

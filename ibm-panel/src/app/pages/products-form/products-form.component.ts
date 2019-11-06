@@ -48,7 +48,7 @@ export class ProductsFormComponent extends AbstractForm<Product, number> impleme
       name: value.name,
       description: value.description,
       price: value.price,
-      images: value.images
+      // images: value.images
     })
 
     this.formatPrice();
@@ -84,6 +84,7 @@ export class ProductsFormComponent extends AbstractForm<Product, number> impleme
 
   onBeforeSave(): void {
     this.convertPriceToNumber();
+    this.getField('price').patchValue(new Number(this.getField('price').value));
   }
 
 }

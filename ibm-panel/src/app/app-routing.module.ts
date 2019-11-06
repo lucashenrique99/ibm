@@ -12,6 +12,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProductsFormComponent } from './pages/products-form/products-form.component';
 import { ArticlesFormComponent } from './pages/articles-form/articles-form.component';
 import { LessonsFormComponent } from './pages/lessons-form/lessons-form.component';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { CampaignsFormComponent } from './pages/campaigns-form/campaigns-form.component';
 
 
 export const routes: Routes = [
@@ -20,6 +22,10 @@ export const routes: Routes = [
   { path: AppRoutes.LIST_LESSONS, component: LessonsComponent, canActivate: [AuthGuard] },
   { path: AppRoutes.NEW_LESSON, component: LessonsFormComponent, canActivate: [AuthGuard] },
   { path: AppRoutes.EXISTENT_LESSON, component: LessonsFormComponent, canActivate: [AuthGuard] },
+
+  { path: AppRoutes.LIST_CAMPAIGNS, component: CampaignsComponent, canActivate: [AuthGuard] },
+  { path: AppRoutes.NEW_CAMPAIGN, component: CampaignsFormComponent, canActivate: [AuthGuard] },
+  { path: AppRoutes.EXISTENT_CAMPAIGN, component: CampaignsFormComponent, canActivate: [AuthGuard] },
 
   { path: AppRoutes.LIST_ARTICLES, component: ArticlesComponent, canActivate: [AuthGuard] },
   { path: AppRoutes.NEW_ARTICLE, component: ArticlesFormComponent, canActivate: [AuthGuard] },

@@ -15,7 +15,17 @@
             </mat-form-field>
         </div>
         <div class="form-container">
-            <app-quill [content]="content" (onTextChange)="onQuillContentChange($event)" ></app-quill>
+            <mat-form-field>
+                <input matInput [matDatepicker]="date" placeholder="Data" [formControl]="getField('date')" />
+                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+
+                <mat-error *ngIf="hasError('date','required')">Data é obrigatória
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <app-quill [content]="content" (onTextChange)="onQuillContentChange($event)"></app-quill>
         </div>
 
     </mat-card>

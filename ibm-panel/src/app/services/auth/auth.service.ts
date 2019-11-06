@@ -9,12 +9,12 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  private readonly $isAuthenticated: BehaviorSubject<boolean>;
+  private readonly isAuthenticated$: BehaviorSubject<boolean>;
 
   constructor(
     private http: HttpClient
   ) {
-    this.$isAuthenticated = new BehaviorSubject<boolean>(
+    this.isAuthenticated$ = new BehaviorSubject<boolean>(
       this.getAccessKey() !== null && this.getAccessKey() !== undefined
     );
   }
@@ -23,25 +23,27 @@ export class AuthService {
     return localStorage.getItem('key');
   }
 
-  isAuthenticated(): Observable<boolean> {
-    return this.$isAuthenticated;
+  isAuthenticated(bool?: boolean): Observable<boolean> | boolean {
+    return (bool) ?
+      this.getAccessKey() !== null && this.getAccessKey() !== undefined :
+      this.isAuthenticated$;
   }
 
   handleLogin(username: string, password: string): Observable<any> {
-    return this.$isAuthenticated;
-    // return this.http.post<{ key: string }>(`${environment.apiURL}/users/sign-in`, { username, password })
-    //   .pipe(map(value => {
-    //     localStorage.setItem('key', value.key);
-    //     this.$isAuthenticated.next(true);
+    // return this.$isAuthenticated;
+    return this.http.post<{ key: string }>(`${environment.apiURL}/users/sign-in`, { email: username, password })
+      .pipe(map(value => {
+        localStorage.setItem('key', value.key);
+        this.isAuthenticated$.next(true);
 
-    //     return { logged: true }
-    //   }));
+        return { logged: true }
+      }));
   }
 
   handleLogout(): Observable<any> {
     localStorage.removeItem('key');
-    this.$isAuthenticated.next(false);
-    return this.$isAuthenticated;
+    this.isAuthenticated$.next(false);
+    return this.isAuthenticated$;
   }
 
 }

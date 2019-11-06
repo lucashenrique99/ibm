@@ -27,7 +27,8 @@ export class MenuComponent {
     private auth: AuthService,
     private router: Router) {
 
-    this.auth.isAuthenticated().subscribe((isLogged) => this.isLogged = isLogged)
+    (this.auth.isAuthenticated() as Observable<boolean>)
+      .subscribe((isLogged) => this.isLogged = isLogged)
   }
 
   onLogoutClick() {

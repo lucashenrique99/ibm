@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="col-12 col-lg-10 offset-lg-1 mt-3 mb-3">
+
+        <app-page-title title="Artigos"></app-page-title>
+
+        <div class="row">
+            <ng-template ngFor let-article [ngForOf]="articles">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <h1>{{article.title}}</h1>
+                        </div>
+                        <div class="card-body p-3">
+                            {{article.subtitle}}
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

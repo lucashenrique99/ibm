@@ -1,0 +1,44 @@
+<app-form-view title="Nova Campanha" (onSave)="onSave()" [disableButton]="isInvalidForm()" [form]="form">
+    <mat-card form>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Título" [formControl]="getField('title')">
+                <mat-error *ngIf="hasError('title','required')">Título é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput placeholder="Subtítulo" [formControl]="getField('subtitle')">
+                <mat-error *ngIf="hasError('subtitle','required')">Subtítulo é obrigatório
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput [matDatepicker]="initialDate" placeholder="Data de início"
+                    [formControl]="getField('initialDate')" />
+                <mat-datepicker-toggle matSuffix [for]="initialDate"></mat-datepicker-toggle>
+                <mat-datepicker #initialDate></mat-datepicker>
+
+                <mat-error *ngIf="hasError('initialDate','required')">Data de início é obrigatória
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <mat-form-field>
+                <input matInput [matDatepicker]="finalDate" placeholder="Data de encerramento"
+                    [formControl]="getField('finalDate')" />
+                <mat-datepicker-toggle matSuffix [for]="finalDate"></mat-datepicker-toggle>
+                <mat-datepicker #finalDate></mat-datepicker>
+
+                <mat-error *ngIf="hasError('finalDate','required')">Data de encerramento é obrigatória
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-container">
+            <app-quill [content]="content" (onTextChange)="onQuillContentChange($event)"></app-quill>
+        </div>
+
+    </mat-card>
+</app-form-view>
