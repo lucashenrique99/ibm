@@ -39,6 +39,6 @@ export class CampaignsTableComponent implements AfterViewInit, OnInit {
   }
 
   getMessage(id: number): string{
-    return `Deseja realmente excluir o artigo ${this.dataSource.data.find(p => p.id == id).title}?`;
+    return `Deseja realmente excluir a campanha ${this.dataSource.data.find(p => p.id == id).title}?`;
   }
 }

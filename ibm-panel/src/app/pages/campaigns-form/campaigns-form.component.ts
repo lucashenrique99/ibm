@@ -13,7 +13,7 @@ import { AppRoutes } from 'src/app/utils/routes/routes.enum';
 })
 export class CampaignsFormComponent extends AbstractForm<Campaign, number> implements OnInit {
 
-  content: any = [];
+  content: any = {};
 
   constructor(
     formBuilder: FormBuilder,
@@ -36,9 +36,10 @@ export class CampaignsFormComponent extends AbstractForm<Campaign, number> imple
       id: [null],
       title: [null, [Validators.required]],
       subtitle: [null, [Validators.required]],
-      content: [null,],
-      initialDate: [null, [Validators.required]],
-      finalDate: [null, [Validators.required]],
+      content: [null],
+      startDate: [null, [Validators.required]],
+      endDate: [null, [Validators.required]],
+      visible: [true]
     })
   }
 
@@ -51,8 +52,9 @@ export class CampaignsFormComponent extends AbstractForm<Campaign, number> imple
       title: value.title,
       subtitle: value.subtitle,
       content: value.content,
-      initialDate: value.initialDate,
-      finalDate: value.finalDate,
+      startDate: value.startDate,
+      endDate: value.endDate,
+      visible: value.visible
     })
 
   }

@@ -64,7 +64,8 @@ export interface Campaign {
   title: string;
   subtitle?: string;
   content?: string;
-  initialDate?: Date;
-  finalDate?: Date;
+  startDate?: Date;
+  endDate?: Date;
+  visible?: boolean;
 
 }

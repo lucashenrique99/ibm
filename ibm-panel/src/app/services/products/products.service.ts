@@ -50,6 +50,13 @@ export class ProductsService implements CrudInterface<Product, number> {
     return this.http.put<Product>(`${environment.apiURL}/products/${product.id}`, product);
   }
 
+  upload(files: FileList) {
+    const form = new FormData();
+    form.append('file', files[0]);
+
+    return this.http.post<{ url: string }>(`${environment.apiURL}/upload/products`, form);
+  }
+
   delete(id: number): Observable<Product> {
     // this.products = this.products.filter(u => u.id != id);
     // this.products$.next(this.products);

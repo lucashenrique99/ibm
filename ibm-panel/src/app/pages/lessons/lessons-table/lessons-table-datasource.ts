@@ -2,7 +2,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { CrudInterface } from 'src/app/services/interface/crud-interface';
 import { Lesson } from 'src/app/services/lessons/lessons.service';
 
@@ -24,11 +24,19 @@ export class LessonsTableDataSource extends DataSource<LessonsTableItem> {
   paginator: MatPaginator;
   sort: MatSort;
 
+  lessons$: BehaviorSubject<LessonsTableItem[]>;
+
   constructor(
     private service: CrudInterface<Lesson, number>
   ) {
     super();
 
+    this.lessons$ = new BehaviorSubject(this.data);
+
+    this.findAll();
+  }
+
+  findAll() {
     this.service
       .findAll()
       .pipe(
@@ -37,6 +45,7 @@ export class LessonsTableDataSource extends DataSource<LessonsTableItem> {
       .subscribe(
         (array) => {
           this.data = array;
+          this.lessons$.next(this.data);
         }
       )
   }
@@ -48,15 +57,16 @@ export class LessonsTableDataSource extends DataSource<LessonsTableItem> {
   connect(): Observable<LessonsTableItem[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
-    const dataMutations = [
-      observableOf(this.data),
-      this.paginator.page,
-      this.sort.sortChange
-    ];
+    // const dataMutations = [
+    //   observableOf(this.data),
+    //   this.paginator.page,
+    //   this.sort.sortChange
+    // ];
 
-    return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
-    }));
+    // return merge(...dataMutations).pipe(map(() => {
+    //   return this.getPagedData(this.getSortedData([...this.data]));
+    // }));
+    return this.lessons$.asObservable();
   }
 
   /**

@@ -16,23 +16,23 @@
         </div>
         <div class="form-container">
             <mat-form-field>
-                <input matInput [matDatepicker]="initialDate" placeholder="Data de início"
-                    [formControl]="getField('initialDate')" />
-                <mat-datepicker-toggle matSuffix [for]="initialDate"></mat-datepicker-toggle>
-                <mat-datepicker #initialDate></mat-datepicker>
+                <input matInput [matDatepicker]="startDate" placeholder="Data de início"
+                    [formControl]="getField('startDate')" />
+                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
 
-                <mat-error *ngIf="hasError('initialDate','required')">Data de início é obrigatória
+                <mat-error *ngIf="hasError('startDate','required')">Data de início é obrigatória
                 </mat-error>
             </mat-form-field>
         </div>
         <div class="form-container">
             <mat-form-field>
-                <input matInput [matDatepicker]="finalDate" placeholder="Data de encerramento"
-                    [formControl]="getField('finalDate')" />
-                <mat-datepicker-toggle matSuffix [for]="finalDate"></mat-datepicker-toggle>
-                <mat-datepicker #finalDate></mat-datepicker>
+                <input matInput [matDatepicker]="endDate" placeholder="Data de encerramento"
+                    [formControl]="getField('endDate')" />
+                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-datepicker #endDate></mat-datepicker>
 
-                <mat-error *ngIf="hasError('finalDate','required')">Data de encerramento é obrigatória
+                <mat-error *ngIf="hasError('endDate','required')">Data de encerramento é obrigatória
                 </mat-error>
             </mat-form-field>
         </div>

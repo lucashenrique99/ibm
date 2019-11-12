@@ -16,9 +16,9 @@ export class ChristianVideosComponent implements OnInit {
 
   ngOnInit() {
     const videos = [
-      'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',
-      'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',
-      'https://www.youtube.com/embed/zpOULjyy-n8?rel=0',
+      'https://www.youtube.com/embed/54k2KlwCLvM',
+      'https://www.youtube.com/embed/54k2KlwCLvM',
+      'https://www.youtube.com/embed/54k2KlwCLvM',
     ]
 
     this.videos = videos.map(url => this.sanitizer.bypassSecurityTrustResourceUrl(url));

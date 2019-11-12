@@ -17,7 +17,8 @@ import { CampaignsFormComponent } from './pages/campaigns-form/campaigns-form.co
 
 
 export const routes: Routes = [
-  { path: AppRoutes.DASHBOARD, component: DashboardComponent, canActivate: [AuthGuard] },
+  // { path: AppRoutes.DASHBOARD, component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: AppRoutes.DASHBOARD, component: LessonsComponent, canActivate: [AuthGuard] },
 
   { path: AppRoutes.LIST_LESSONS, component: LessonsComponent, canActivate: [AuthGuard] },
   { path: AppRoutes.NEW_LESSON, component: LessonsFormComponent, canActivate: [AuthGuard] },

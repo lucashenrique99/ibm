@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="col-12 col-lg-10 offset-lg-1 mt-3 mb-3">
 
-        <app-page-title title="Vídeos Cristãos"></app-page-title>
+        <app-page-title title="Cultos Ao Vivo"></app-page-title>
 
         <div class="row">
             <ng-template ngFor let-url [ngForOf]="videos">
@@ -9,17 +9,19 @@
                     <div class="card mb-2">
                         <div class="card-header">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" [src]="url" allowfullscreen></iframe>
+                                <iframe width="560" height="315" [src]="url" frameborder="0"
+                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="card-body mt-3">
+                        <!-- <div class="card-body mt-3">
                             <h5 class="mt-0 mb-1">List-based media object</h5>
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
                             sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
                             Fusce
                             condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in
                             faucibus.
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </ng-template>

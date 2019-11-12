@@ -42,7 +42,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './pages/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticlesFormComponent } from './pages/articles-form/articles-form.component';
 import { QuillComponent } from './components/editor/quill/quill.component';
 import { LessonsFormComponent } from './pages/lessons-form/lessons-form.component';
@@ -54,6 +54,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CampaignsComponent } from './pages/campaigns/campaigns.component';
 import { CampaignsFormComponent } from './pages/campaigns-form/campaigns-form.component';
 import { CampaignsTableComponent } from './pages/campaigns/campaigns-table/campaigns-table.component';
+import { AuthInterceptor } from './utils/interceptors/auth-interceptor';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -111,7 +112,12 @@ registerLocaleData(localePt);
     MatSnackBarModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   entryComponents: [DeleteDialogComponent],
   bootstrap: [AppComponent]

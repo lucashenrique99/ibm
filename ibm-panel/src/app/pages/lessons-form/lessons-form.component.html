@@ -7,26 +7,28 @@
                 </mat-error>
             </mat-form-field>
         </div>
-        <div class="form-container">
+        <!-- <div class="form-container">
             <mat-form-field>
                 <input matInput placeholder="Subtítulo" [formControl]="getField('subtitle')">
                 <mat-error *ngIf="hasError('subtitle','required')">Subtítulo é obrigatório
                 </mat-error>
             </mat-form-field>
-        </div>
+        </div> -->
         <div class="form-container">
             <mat-form-field>
                 <input matInput [matDatepicker]="date" placeholder="Data" [formControl]="getField('date')" />
                 <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
                 <mat-datepicker #date></mat-datepicker>
-                
+
                 <mat-error *ngIf="hasError('date','required')">Data é obrigatória
                 </mat-error>
             </mat-form-field>
         </div>
-        <div class="form-container">
+        <input accept="application/pdf" hidden #uploadInput type="file" (change)="handleOnChangeUploadFile($event)">
+        <button type="button" mat-raised-button (click)="onUploadClick(uploadInput)">Upload</button>
+        <!-- <div class="form-container">
             <app-quill [content]="content" (onTextChange)="onQuillContentChange($event)"></app-quill>
-        </div>
+        </div> -->
 
     </mat-card>
 </app-form-view>

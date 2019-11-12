@@ -17,7 +17,7 @@ export class LessonsTableComponent implements AfterViewInit, OnInit {
   dataSource: LessonsTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['title', 'date', 'moreOptions'];
+  displayedColumns = ['title', 'date'];
 
   constructor(
     private lessons: LessonsService
