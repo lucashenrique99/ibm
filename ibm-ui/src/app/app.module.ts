@@ -1,7 +1,11 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt);
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +20,8 @@ import { BibleComponent } from './pages/bible/bible.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ArticleViewComponent } from './pages/articles/article-view/article-view.component';
+import { DownloadsPageComponent } from './pages/downloads-page/downloads-page.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,9 @@ import { HttpClientModule } from '@angular/common/http';
     ChristianVideosComponent,
     PageTitleComponent,
     BibleComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ArticleViewComponent,
+    DownloadsPageComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,9 @@ import { HttpClientModule } from '@angular/common/http';
 
     NgbModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

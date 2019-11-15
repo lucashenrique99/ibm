@@ -18,12 +18,36 @@ export class MenuService {
 
   private handleBuildMenu() {
     this.menuLinks = [
-      { label: 'Início', routerLink: '/', visible: true },
-      { label: 'A Igreja', routerLink: '/a-igreja', visible: true },
-      { label: 'Artigos', routerLink: '/artigos', visible: true },
-      { label: 'Cultos Ao Vivo', routerLink: '/videos-cristaos', visible: true },
-      { label: 'Lições semanais', routerLink: '/', visible: true },
-      { label: 'Atitude Store', routerLink: '/', visible: false },
+      {
+        label: 'Início',
+        routerLink: '/',
+        visible: true
+      },
+      {
+        label: 'A Igreja',
+        routerLink: '/a-igreja',
+        visible: true
+      },
+      {
+        label: 'Artigos',
+        routerLink: '/artigos',
+        visible: true
+      },
+      {
+        label: 'Cultos Ao Vivo',
+        routerLink: '/videos-cristaos',
+        visible: true
+      },
+      {
+        label: 'Downloads',
+        routerLink: '/downloads',
+        visible: true
+      },
+      {
+        label: 'Atitude Store',
+        routerLink: '/',
+        visible: false
+      },
       // { id: 'biblia', label: 'Bíblia', routerLink: '/biblia', visible: true, items: [] },
     ];
     this.$menu.next(this.menuLinks.filter(menu => menu.visible));

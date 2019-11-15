@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="col-12 col-lg-10 offset-lg-1 mt-3 mb-3">
+
+        <app-page-title title="Downloads"></app-page-title>
+
+        <div class="row">
+            <ul class="list-group list-group-flush col">
+                <li class="list-group-item" *ngFor="let download of downloads">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-column">
+                            <h4>{{download.title}}</h4>
+                            <span>{{download.date | date: 'shortDate'}}</span>
+                        </div>
+                        <a role="button" class="btn btn-download btn-outline-dark" target="_blank" [href]="getURL(download.url)">
+                            <i class="fas fa-download"></i>
+                            <span class="pl-2">Download</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

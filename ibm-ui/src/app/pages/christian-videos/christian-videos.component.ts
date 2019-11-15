@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { VideosService } from 'src/app/services/videos/videos.service';
 
 @Component({
   selector: 'app-christian-videos',
@@ -11,17 +12,14 @@ export class ChristianVideosComponent implements OnInit {
   videos: Array<SafeResourceUrl>;
 
   constructor(
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private videosService: VideosService
   ) { }
 
   ngOnInit() {
-    const videos = [
-      'https://www.youtube.com/embed/54k2KlwCLvM',
-      'https://www.youtube.com/embed/54k2KlwCLvM',
-      'https://www.youtube.com/embed/54k2KlwCLvM',
-    ]
-
-    this.videos = videos.map(url => this.sanitizer.bypassSecurityTrustResourceUrl(url));
+    this.videosService.findAll().subscribe(videos => {
+      this.videos = videos.map(url => this.sanitizer.bypassSecurityTrustResourceUrl(url));
+    })
 
   }
 

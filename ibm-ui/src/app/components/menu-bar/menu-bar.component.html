@@ -9,8 +9,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div #menu class="collapse navbar-collapse" id="menu-navBar" [ngbCollapse]="isCollapsed">
-            <ul class="navbar-nav mr-auto">
+        <div #menu class="collapse navbar-collapse justify-content-end" id="menu-navBar" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav">
                 <ng-template ngFor let-menu [ngForOf]="menuLinks">
                     <li *ngIf="!menu.items || !menu.items.length" class="nav-item mr-2">
                         <a class="nav-link" [routerLink]="menu.routerLink">{{menu.label}}</a>

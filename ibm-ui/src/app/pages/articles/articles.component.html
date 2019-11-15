@@ -5,7 +5,7 @@
 
         <div class="row">
             <ng-template ngFor let-article [ngForOf]="articles">
-                <div class="col-12 col-sm-6 col-lg-4  d-flex">
+                <div (click)="onClick(article.id)" class="col-12 col-sm-6 col-lg-4  d-flex article-card">
                     <div class="card mb-2  flex-fill">
                         <div class="card-header">
                             <h1>{{article.title}}</h1>

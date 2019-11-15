@@ -19,7 +19,7 @@ export class ArticleService {
     return this.http.get<Array<Article>>(`${environment.apiURL}/articles`);
   }
 
-  findById(id: number): Observable<Article> {
+  findById(id: string): Observable<Article> {
     return this.http.get<Article>(`${environment.apiURL}/articles/${id}`);
   }
 }

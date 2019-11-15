@@ -1,8 +1,19 @@
 @import 'src/assets/scss/colors.scss';
 
 section{
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+
     &:nth-child(odd){
-        background-color: $third-color;
+        background-color: $seventh-color;
         color: $first-color;
     }
+}
+
+.carousel-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000 !important;
 }
