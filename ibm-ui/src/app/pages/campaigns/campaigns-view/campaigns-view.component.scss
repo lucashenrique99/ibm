@@ -1,0 +1,10 @@
+@import '~quill/dist/quill.bubble.css';
+
+.quill-container{
+    padding-top: 1.5em !important;
+    max-width: 100%;
+}
+
+.quill-container *{
+    max-width: 100%;
+}

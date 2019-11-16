@@ -22,6 +22,8 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticleViewComponent } from './pages/articles/article-view/article-view.component';
 import { DownloadsPageComponent } from './pages/downloads-page/downloads-page.component';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { CampaignsViewComponent } from './pages/campaigns/campaigns-view/campaigns-view.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { DownloadsPageComponent } from './pages/downloads-page/downloads-page.co
     BibleComponent,
     ArticlesComponent,
     ArticleViewComponent,
-    DownloadsPageComponent
+    DownloadsPageComponent,
+    CampaignsComponent,
+    CampaignsViewComponent
   ],
   imports: [
     BrowserModule,

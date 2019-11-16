@@ -7,6 +7,8 @@ import { BibleComponent } from './pages/bible/bible.component';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { ArticleViewComponent } from './pages/articles/article-view/article-view.component';
 import { DownloadsPageComponent } from './pages/downloads-page/downloads-page.component';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { CampaignsViewComponent } from './pages/campaigns/campaigns-view/campaigns-view.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: "videos-cristaos", component: ChristianVideosComponent },
   { path: "artigos", component: ArticlesComponent },
   { path: "artigos/:id", component: ArticleViewComponent },
+  { path: "campanhas", component: CampaignsComponent },
+  { path: "campanhas/:id", component: CampaignsViewComponent },
   { path: "biblia", component: BibleComponent },
   { path: "downloads", component: DownloadsPageComponent },
 ];

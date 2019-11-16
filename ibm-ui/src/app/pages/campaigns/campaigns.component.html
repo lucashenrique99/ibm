@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="col-12 col-lg-10 offset-lg-1 mt-3 mb-3">
+
+        <app-page-title title="Campanhas"></app-page-title>
+
+        <div class="row">
+            <ng-template ngFor let-campaign [ngForOf]="campaigns">
+                <div (click)="onClick(campaign.id)" class="col-12 col-sm-6 col-lg-4  d-flex campaign-card">
+                    <div class="card mb-2  flex-fill">
+                        <div class="card-header">
+                            <h1>{{campaign.title}}</h1>
+                        </div>
+                        <div class="card-body p-3">
+                            {{campaign.subtitle}}
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

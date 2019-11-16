@@ -34,6 +34,11 @@ export class MenuService {
         visible: true
       },
       {
+        label: 'Campanhas',
+        routerLink: '/campanhas',
+        visible: true
+      },
+      {
         label: 'Cultos Ao Vivo',
         routerLink: '/videos-cristaos',
         visible: true
